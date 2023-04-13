@@ -1,0 +1,34 @@
+int func1 (int rdi){
+    return rdi + 10;
+}
+
+int func2 (){
+    return %rip + 10
+}
+
+int func3(rdi, rsi){
+    rdi = rdi * rsi;
+    rax = rdi;
+    rax += global;
+    return rax;
+}
+
+int func4(){
+    rdi = 5;
+    goto label_18;
+    label_18:
+    if (rax <= 20){
+        goto label_50;
+    }
+    rsi = -65
+    rdi = 1
+    rax = -
+    label_45:
+    return rax;
+    label_50:
+    rsi = -65;
+    Rdr = 1;
+    Rax = 0;
+    goto label_45;
+}
+

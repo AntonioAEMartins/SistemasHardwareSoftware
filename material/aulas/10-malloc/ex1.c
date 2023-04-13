@@ -24,6 +24,5 @@ int main(int argc, char *argv[]) {
         printf("Elemento %d: %d\n", i+1, vetor[i]);
     }
 
-
     return 0;
 }
