@@ -22,4 +22,8 @@ int main() {
     }
     
     return 0;
+
+    // Exercicio 6:
+    //  O problema de escopo de dados deste codigo eh a ordem de recebimento dos dados
+    
 }

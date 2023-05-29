@@ -27,4 +27,9 @@ int main() {
     }
 
     return 0;
+
+    // Exercicio 7:
+    // O problema das funcoes na forma que sao implementadas. eh que o arquivo
+    // principal pode estar rodando a main, criando novas threads ao mesmo moemntos que outras threads
+    // ja estao rodando. Isso ira fazer com que o pthread_join sera rodado depois da criacao e finalizacao de algumas threads
 }
