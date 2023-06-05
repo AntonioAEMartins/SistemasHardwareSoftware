@@ -4,10 +4,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <time.h>
-#include <signal.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 
 // Variável GLOBAL para armazenar o valor de PI aproximado
 double pi = 0.0;
@@ -18,41 +14,12 @@ double random_zero_one() {
     return (double)random()/(double)RAND_MAX;
 }
 
-void sigint_handler(int num) {
-    printf("\n%lf\n", pi);
-
-    FILE *fw = open("pi.txt", O_WRONLY | O_CREAT , 0700);
-
-    char *buffer = (char *) malloc(sizeof(char) * 20);
-    sprintf(buffer, "%lf" , pi);
-    int size = 0;
-    for (int i = 0; i < 20; i++){
-        if (buffer[i] == NULL){
-            break;
-        }
-        size ++;
-        
-    }
-    int res = write(fw, buffer, size);
-    //int res = write(fw, buffer, 10);
-    //printf("RES: %d", res);
-    close(fw);
-    free(buffer);
-
-    struct sigaction handler;
-    handler.sa_handler = SIG_DFL;
-    handler.sa_flags = 0;
-    sigemptyset(&handler.sa_mask);
-    sigaction(SIGINT, &handler, NULL);
-    raise(SIGINT); // EH para si Proprio, KILL eh para matar qualquer processo filho
-}
-
 // Função que calcula o valor de pi por simulação (Monte Carlo)
 // Você não deve alterar esta função
 double aproxima_pi() {
     long dentro = 0;
     long total_pontos = 0;
--
+
     double x,y,d;
     while (1) {
         x = random_zero_one();
@@ -77,14 +44,8 @@ double aproxima_pi() {
 int main() {
 
     // Exiba o PID deste processo
-    printf("%d\n", getpid());
-    // Registre AQUI seu handler para o sinal SIGINT!
-    struct sigaction handler;
-    handler.sa_handler = sigint_handler;
-    handler.sa_flags = 0;
-    sigemptyset(&handler.sa_mask);
-    sigaction(SIGINT, &handler, NULL);
 
+    // Registre AQUI seu handler para o sinal SIGINT!
 
     srand(time(NULL));
     aproxima_pi();

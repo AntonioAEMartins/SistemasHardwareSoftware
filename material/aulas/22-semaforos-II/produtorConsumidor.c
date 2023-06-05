@@ -34,6 +34,7 @@ void *thread_produtor(void *arg) {
         dados->index = 0;
         printf("Lista Cheia\n");
     }
+    
     pthread_mutex_lock(&dados->xMutex);
     dados->elementos[dados->index] = r;
     dados->index ++;
